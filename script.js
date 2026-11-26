@@ -1,16 +1,16 @@
 (function(){
-const cfg=window.ALCHEMIST_LANDING||{};const $=s=>document.querySelector(s);
-const appUrl=cfg.appPreviewUrl||"https://zhiza24.github.io/game_commercial/?u=T";
-document.querySelectorAll(".app-link").forEach(a=>{a.href=appUrl;a.target="_blank";a.rel="noopener";});
-const buy=$("#buy-button"),price=$("#offer-price"),note=$("#purchase-note");
-if(cfg.purchaseUrl){buy.href=cfg.purchaseUrl;buy.target="_blank";buy.rel="noopener";if(note)note.textContent=cfg.purchaseNote||"После перехода Вы попадете на страницу оплаты LavaTop.";}
-else{buy.href="#purchase";buy.removeAttribute("target");buy.addEventListener("click",e=>{e.preventDefault();if(note){note.textContent="Оплата через LavaTop пока настраивается. Ссылка появится перед запуском.";note.classList.add("note-highlight");}});}
-if(cfg.priceLabel)price.textContent=cfg.priceLabel;
-if(cfg.authorUrl){const a=$("#author-link");if(a)a.href=cfg.authorUrl;}
-const books=$("#books-grid");
-if(Array.isArray(cfg.books)&&cfg.books.length){books.innerHTML="";cfg.books.forEach(book=>{const card=document.createElement("article");card.className="book-card";const cover=document.createElement("div");cover.className="book-cover";if(book.cover){const img=document.createElement("img");img.src=book.cover;img.alt="Обложка: "+(book.title||"книга");img.style.cssText="width:100%;height:100%;object-fit:cover";cover.appendChild(img);}else cover.textContent="✳";const title=document.createElement("h3");title.textContent=book.title||"Книга";const desc=document.createElement("p");desc.textContent=book.description||"Авторский материал Майи Явь.";card.append(cover,title,desc);if(book.url){const link=document.createElement("a");link.href=book.url;link.target="_blank";link.rel="noopener";link.textContent="Подробнее ↗";card.appendChild(link);}books.appendChild(card);});}
-const ads=$("#ad-grid");
-if(Array.isArray(cfg.ads)&&cfg.ads.length){ads.innerHTML="";cfg.ads.forEach(ad=>{const card=document.createElement("article");card.className="ad-card";if(ad.image){const img=document.createElement("img");img.src=ad.image;img.alt="";card.appendChild(img);}const body=document.createElement("div");const title=document.createElement("h3");title.textContent=ad.title||"Материал";const desc=document.createElement("p");desc.textContent=ad.description||"";body.append(title,desc);if(ad.url){const link=document.createElement("a");link.href=ad.url;link.target="_blank";link.rel="noopener";link.textContent="Открыть ↗";body.appendChild(link);}card.appendChild(body);ads.appendChild(card);});}
-$("#year").textContent=new Date().getFullYear();
-const toggle=$(".menu-toggle"),nav=$("#main-nav");if(toggle&&nav){toggle.addEventListener("click",()=>{const open=nav.classList.toggle("is-open");toggle.setAttribute("aria-expanded",String(open));toggle.querySelector("span").textContent=open?"−":"＋";});nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("is-open");toggle.setAttribute("aria-expanded","false");toggle.querySelector("span").textContent="＋";}));}
+var c=window.LANDING||{},$=function(s,r){return(r||document).querySelector(s)},$$=function(s){return[].slice.call(document.querySelectorAll(s))};
+$$("[data-price]").forEach(function(e){e.textContent=c.price||"цена скоро"});
+var soft=$$(".soft");
+$$(".buy").forEach(function(b){
+  if(c.purchaseUrl){b.href=c.purchaseUrl;b.target="_blank";b.rel="noopener";return}
+  b.addEventListener("click",function(e){e.preventDefault();soft.forEach(function(s){s.classList.add("on")});var s=b.parentNode.querySelector(".soft");if(s&&b.closest(".bar")){s.classList.add("on")}})
+});
+function el(t,cl,tx){var e=document.createElement(t);if(cl)e.className=cl;if(tx)e.textContent=tx;return e}
+if(c.books&&c.books.length){var g=$("#books-grid");c.books.forEach(function(b){var d=el("div","bk glass");if(b.cover){var i=el("img");i.src=b.cover;i.alt="";i.loading="lazy";d.appendChild(i)}var x=el("div");x.appendChild(el("h3","",b.title||"Книга"));if(b.description)x.appendChild(el("p","",b.description));if(b.url){var a=el("a","","Подробнее");a.href=b.url;a.target="_blank";a.rel="noopener";x.appendChild(a)}d.appendChild(x);g.appendChild(d)});$("#books").hidden=false}
+if(c.ads&&c.ads.length){var ag=$("#ads-grid");c.ads.forEach(function(b){var d=el("div","bk glass");if(b.image){var i=el("img");i.src=b.image;i.alt="";i.loading="lazy";d.appendChild(i)}var x=el("div");x.appendChild(el("h3","",b.title||""));if(b.description)x.appendChild(el("p","",b.description));if(b.url){var a=el("a","","Открыть");a.href=b.url;a.target="_blank";a.rel="noopener sponsored";x.appendChild(a)}d.appendChild(x);ag.appendChild(d)});$("#ads").hidden=false}
+var bar=$(".bar"),h=$(".hero-cta"),f=$("#final");
+if("IntersectionObserver"in window){var hid=false,fin=false;function upd(){bar.classList.toggle("on",hid&&!fin)}
+new IntersectionObserver(function(e){hid=!e[0].isIntersecting;upd()}).observe(h);
+new IntersectionObserver(function(e){fin=e[0].isIntersecting;upd()}).observe(f)}else{bar.classList.add("on")}
 })();

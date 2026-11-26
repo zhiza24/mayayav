@@ -1,7 +1,8 @@
-# mayayav.ru
+# Майя Явь — лендинг игры «Путь Алхимика»
 
-Лендинг «Путь Алхимика» автора Майи Явь.
+Сайт: https://zhiza24.github.io/mayayav/
 
-Сайт публикуется через GitHub Pages этого репозитория и должен открываться на домене [mayayav.ru](https://zhiza24.github.io/mayayav/).
-
-Приложение остается на отдельном адресе: [коммерческая версия](https://zhiza24.github.io/game_commercial/?u=T). Оплата подключается через LavaTop в `config.js` (поле `purchaseUrl`).
+- `index.html`, `styles.css`, `script.js` — продающий лендинг (для ссылок из Instagram и YouTube).
+- `config.js` — цена (`price`), ссылка оплаты LavaTop (`purchaseUrl`), книги (`books`), рекламные места (`ads`). Пока `purchaseUrl` пустой, кнопка показывает «Оплата откроется скоро».
+- `gpt.html` — прежний вариант лендинга (не индексируется).
+- Ссылку на игру на лендинге не ставим: она выдается после оплаты.

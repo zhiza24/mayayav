@@ -1,11 +1,9 @@
-/* Настройки лендинга. Перед запуском вставьте ссылку LavaTop и добавьте книги/рекламу. */
-window.ALCHEMIST_LANDING = {
+/* Настройки лендинга. Вставь ссылку LavaTop в purchaseUrl, когда она будет готова. */
+window.LANDING = {
+  price: "цена скоро",
   purchaseUrl: "",
-  purchaseProvider: "LavaTop",
-  appPreviewUrl: "https://zhiza24.github.io/game_commercial/?u=T",
-  priceLabel: "",
-  purchaseNote: "Оплата будет подключена через LavaTop. Ссылка появится перед запуском.",
-  authorUrl: "https://teletype.in/@mayayav_avtor",
+  /* Книги: [{title:"", description:"", url:"", cover:""}] — блок появится сам, когда список не пуст. */
   books: [],
+  /* Рекламные места: [{title:"", description:"", url:"", image:""}] — блок появится сам, когда список не пуст. */
   ads: []
 };
